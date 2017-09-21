@@ -10,6 +10,12 @@ class TODOHeader extends Component {
         }
     }
 
+    handleEnterKey(event) {
+        if(event.keyCode === 13){
+            document.getElementById("header-button").click();
+        }
+    }
+
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
@@ -23,8 +29,19 @@ class TODOHeader extends Component {
                         <h1 className="header-logo-text">TODO:</h1>
                     </div>
                     <div className="header-center">
-                        <input className="header-text-field" onChange={(e) => this.handleChange(e)} type="text" placeholder="Shopping list"></input>
-                        <button className="header-button" id="header-button" onClick={(value) => this.props.onClick(this.state.value)}>Submit</button>
+                        <input
+                            className="header-text-field"
+                            onChange={(e) => this.handleChange(e)}
+                            onKeyDown={(e) => this.handleEnterKey(e)}
+                            type="text"
+                            placeholder="Enter a list name">
+                        </input>
+                        <button
+                            className="header-button"
+                            id="header-button"
+                            onClick={(value) => this.props.onClick(this.state.value)}>
+                                Submit
+                        </button>
                     </div>
                 </div>
             </header>
@@ -32,13 +49,25 @@ class TODOHeader extends Component {
     }
 }
 
-class TODOList extends Component{
+class TODOListEntry extends Component {
+    render() {
+        return (
+            <div></div>
+        );
+    }
+}
+
+class TODOList extends Component {
     render() {
         return (
             <div className="list-container">
                 <div className="list-header">
                     <h1>{this.props.listName}</h1>
-                    <button className="list-close" onClick={(listKey) => this.props.deleteFunc(this.props.listKey)}><i className="fa fa-times"></i></button>
+                    <button
+                        className="list-close"
+                        onClick={(listKey) => this.props.deleteFunc(this.props.listKey)}>
+                            <i className="fa fa-times"></i>
+                    </button>
                 </div>
             </div>
         );
@@ -79,7 +108,8 @@ class App extends Component {
                             key={key}
                             listKey={key}
                             listName={this.state.lists[key]['name']}
-                            deleteFunc={(listKey) => this.removeList(listKey)} />
+                            deleteFunc={(listKey) => this.removeList(listKey)}
+                        />
                     )
                 });
     }

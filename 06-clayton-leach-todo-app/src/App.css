@@ -8,6 +8,9 @@ Yellow      Grey
 -------------------
 */
 
+/*-------------------
+Header Section
+-------------------*/
 header {
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
@@ -68,6 +71,7 @@ header::after {
     text-align: center;
     border: 1px solid #5E5C56;
     border-radius: 30px;
+    outline: none
 }
 
 .header-button {
@@ -79,6 +83,7 @@ header::after {
     border-radius: 30px;
     line-height: 40px;
     background: transparent;
+    outline: none;
 }
 
 .header-button:hover{
@@ -86,6 +91,9 @@ header::after {
     background: white;
 }
 
+/*-------------------
+Lists Section
+-------------------*/
 .lists-area{
     width: 80%;
     margin: 0 auto;
@@ -99,6 +107,8 @@ header::after {
     min-width: calc(25% - 20px);
     margin-right: 20px;
     margin-bottom: 20px;
+    transition: left 0.3s, top 0.3s;
+    transition-timing-function: ease-in-out;
 }
 
 .list-header{
