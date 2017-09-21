@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assignment 3</title>
+        <link rel="stylesheet" href="./css/styles.css">
+        <script type="text/javascript">
+
+            //http://api.wunderground.com/api/e9da1475c57ebdd8/conditions/q/CA/San_Francisco.json
+            var xmlHTTP = new XMLHttpRequest();
+            var url = "http://api.wunderground.com/api/e9da1475c57ebdd8/hourly/q/CA/Calgary.json";
+
+            xmlHTTP.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status ==200) {
+                    var jsonResponse = JSON.parse(this.responseText);
+                    processResponse(jsonResponse);
+                }
+            }
+
+            xmlHTTP.open("GET", url, true);
+            xmlHTTP.send();
+
+            function processResponse(json){
+                json['hourly_forecast'].forEach(function(hour) {
+                    var weatherTableBody = document.getElementById("weather-table-body")
+
+                    var newRow = document.createElement("tr");
+                    var newTime = document.createElement("td");
+                    newTime.className = "align-left time";
+                    var newTemp = document.createElement("td");
+                    var newHumid = document.createElement("td");
+
+                    newTime.innerHTML = hour['FCTTIME']['hour'] + ":00";
+                    newTemp.innerHTML = hour['temp']['metric'] + "°";
+                    newHumid.innerHTML = hour["humidity"] + "%";
+
+                    newRow.appendChild(newTime);
+                    newRow.appendChild(newTemp);
+                    newRow.appendChild(newHumid);
+                    weatherTableBody.appendChild(newRow);
+                });
+                // console.log(json); ° %
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Weather Forecast</h1>
+        <table id="weather-table">
+            <thead>
+                <tr class="headings">
+                    <th class="align-left">Time</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                </tr>
+            </thead>
+            <tbody id="weather-table-body">
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+html{
+    font-family: sans-serif;
+}
+
+.align-left{
+    text-align: left;
+}
+
+h1{
+    font-size: 40px;
+    font-weight: lighter;
+    margin: 0;
+    color: #b22222;
+}
+
+table{
+    border-collapse: collapse;
+    box-shadow: 10px 10px 10px #f9f9f9;
+}
+
+tr{
+    border-bottom: 1px solid #ccc;
+}
+
+th, td{
+    font-weight: lighter;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    width: 200px;
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+th{
+    background:  #b22222;
+    border-bottom: none;
+    color: #ddd
+}
+
+.time {
+    background:  #ddd;
+}

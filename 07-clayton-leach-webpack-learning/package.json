@@ -1,0 +1,19 @@
+{
+  "name": "expresstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "expresstest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "nunjucks": "^3.0.1"
+  },
+  "devDependencies": {
+    "htmlclean": "^3.0.3",
+    "htmlclean-loader": "^1.0.7"
+  }
+}

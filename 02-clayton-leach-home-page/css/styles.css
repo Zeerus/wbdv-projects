@@ -1,0 +1,268 @@
+*{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+header, main, .wrapper{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.hero {
+    background: linear-gradient(to right, rgba(0,0,0, 0.7), rgba(0,0,0, 0.0)), url("../img/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 300px;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.hero h1, .hero p{
+    color: white;
+    padding-left: 20px;
+}
+
+.mobile-nav, .desktop-nav{
+    float: left;
+    color: white;
+    width: 100%;
+    margin: 0 1%;
+}
+
+.burger-button{
+    line-height: 64px;
+}
+
+.desktop-nav ul{
+    list-style: none;
+    color: white;
+}
+
+.desktop-nav li{
+    display: inline-block;
+}
+
+.desktop-nav a{
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    line-height: 64px;
+    padding: 2px 5px;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin: 0 2px;
+}
+
+.desktop-nav a:hover{
+    color: black;
+    background-color: white;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+
+footer{
+    height: 200px;
+    word-wrap: 100%;
+    background: #000;
+    color: white;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+.mobile-slide-out{
+    display: none;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 60%;
+    height: 100%;
+    z-index: 20;
+    padding-top: 20px;
+    border-left: 1px solid white;
+}
+
+.mobile-slide-out a{
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    display: block;
+    margin: 4px auto;
+    border: 1px white solid;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    width: 95%;
+}
+
+.opened {
+    display: block;
+    left: 40%;
+}
+
+.close-menu-div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+}
+
+
+@media only screen and (min-width: 720px) {
+    .hero{
+        height: 200px;
+        padding-top: 200px;
+        padding-bottom: 100px;
+    }
+
+    .column h1{
+        font-size: 2em;
+    }
+
+    .column p{
+        font-size: 1.125em;
+    }
+}
+
+@media only screen and (min-width: 1040px) {
+    header, main, .hero-row, .wrapper{
+        width: 80%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .hero{
+        height: 400px;
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+}
+
+/*
+we will need to give the margin left right 1% to give us
+a 2% gutter
+*/
+.row {
+  width: 100%;
+}
+
+.row .column {
+  float: left;
+  margin: 10px 1%;
+}
+
+.mobile-nav .column, .desktop-nav .column{
+    float: left;
+    margin: 10px 1%;
+    height: 64px;
+}
+
+.row::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+/*
+our percentages also need to be updated to account for the 1% margin
+*/
+
+.small-1 { width: 6.333333333333334%; }
+.small-2 { width: 14.666666666666668%; }
+.small-3 { width: 23%; }
+.small-4 { width: 31.333333333333336%; }
+.small-5 { width: 39.66666666666667%; }
+.small-6 { width: 48.00000000000001%; }
+.small-7 { width: 56.333333333333336%; }
+.small-8 { width: 64.66666666666667%; }
+.small-9 { width: 73%; }
+.small-10 { width: 81.33333333333333%; }
+.small-11 { width: 89.66666666666667%; }
+.small-12 { width: 98%; }
+
+
+@media only screen and (min-width: 720px) {
+    .medium-1 { width: 6.333333333333334%; }
+    .medium-2 { width: 14.666666666666668%; }
+    .medium-3 { width: 23%; }
+    .medium-4 { width: 31.333333333333336%; }
+    .medium-5 { width: 39.66666666666667%; }
+    .medium-6 { width: 48.00000000000001%; }
+    .medium-7 { width: 56.333333333333336%; }
+    .medium-8 { width: 64.66666666666667%; }
+    .medium-9 { width: 73%; }
+    .medium-10 { width: 81.33333333333333%; }
+    .medium-11 { width: 89.66666666666667%; }
+    .medium-12 { width: 98%; }
+}
+
+@media only screen and (min-width: 1040px) {
+    .large-1 { width: 6.333333333333334%; }
+    .large-2 { width: 14.666666666666668%; }
+    .large-3 { width: 23%; }
+    .large-4 { width: 31.333333333333336%; }
+    .large-5 { width: 39.66666666666667%; }
+    .large-6 { width: 48.00000000000001%; }
+    .large-7 { width: 56.333333333333336%; }
+    .large-8 { width: 64.66666666666667%; }
+    .large-9 { width: 73%; }
+    .large-10 { width: 81.33333333333333%; }
+    .large-11 { width: 89.66666666666667%; }
+    .large-12 { width: 98%; }
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * *
+Visibility Classes
+* * * * * * * * * * * * * * * * * * */
+
+.visible-for-small-only {
+    display: block;
+}
+
+.visible-for-small-and-medium-only {
+    display: block;
+}
+
+.visible-for-medium-and-up {
+    display: none;
+}
+
+.visible-for-large-and-up {
+    display: none;
+}
+
+@media only screen and (min-width: 720px) {
+    .visible-for-small-only {
+        display: none;
+    }
+
+    .visible-for-medium-and-up {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1040px) {
+    .visible-for-small-and-medium-only {
+        display: none;
+    }
+
+    .visible-for-large-and-up {
+        display: block;
+    }
+}

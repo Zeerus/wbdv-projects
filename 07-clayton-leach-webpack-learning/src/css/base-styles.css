@@ -1,0 +1,23 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+*{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+.wrapper{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.align-left{
+    text-align: left;
+}

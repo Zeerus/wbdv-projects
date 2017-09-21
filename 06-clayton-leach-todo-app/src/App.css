@@ -1,0 +1,133 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+/*
+-------------------
+Yellow      Grey
+#E88714   #5E5C56
+-------------------
+*/
+
+header {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    width:100%;
+    background: #E88714;
+    height: 100px;
+    border-bottom: 1px solid #5E5C56;
+}
+
+header::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.header-container {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    background: #E88714;
+    width: 80%;
+    max-width: 1200px;
+    height: 100px;
+    line-height: 100px;
+    padding: 0px 20px;
+    margin: 0 auto;
+    vertical-align: top;
+}
+
+.header-left {
+    float: left;
+    width: 33%;
+}
+
+.header-logo{
+    color: white;
+    line-height: 100px;
+    float: left;
+}
+.header-logo-text{
+    color: white;
+    float: left;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.header-center{
+    float: left;
+    width: 33%;
+    text-align: right;
+}
+
+.header-text-field {
+    font-family: "Open Sans", sans-serif;
+    display: inline-block;
+    color: #5E5C56;
+    min-width: 70%;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #5E5C56;
+    border-radius: 30px;
+}
+
+.header-button {
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    display: inline-block;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 30px;
+    line-height: 40px;
+    background: transparent;
+}
+
+.header-button:hover{
+    color: #E88714;
+    background: white;
+}
+
+.lists-area{
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 0px;
+}
+
+.list-container{
+    float: left;
+    background: #777;
+    display: inline-block;
+    min-width: calc(25% - 20px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.list-header{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    padding: 5px;
+    border: 1px solid #777;
+    background: #E88714;
+}
+
+.list-header::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.list-header h1{
+    font-family: "Open Sans", sans-serif;
+    float: left;
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 300;
+
+}
+
+.list-close{
+    color: white;
+    float: right;
+    background: #777;
+    border: 1px solid white;
+    text-align: center;
+}

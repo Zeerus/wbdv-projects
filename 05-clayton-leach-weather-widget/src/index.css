@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css');
+
+.weather-widget-container{
+    display: inline-block;
+    background: linear-gradient(to bottom, #4881E8, #30569C);
+    border: 1px solid #30569C;
+    border-radius: 7px;
+    padding: 1px;
+}
+
+.weather-widget-header{
+    width: 90%;
+    padding: 5px;
+    border-radius: 7px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.weather-widget-header::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.weather-icon-wrapper{
+    float: left;
+    width: 60px;
+    height: 60px;
+}
+
+.weather-icon-background {
+    color: white;
+    position: relative;
+    margin: auto;
+}
+
+.weather-icon-foreground {
+    position: relative;
+    top: -35px;
+    color: #eee;
+}
+
+.weather-icon-sun {
+    color: #FFC034;
+}
+
+.weather-icon-tstorm-background {
+    left: 15px;
+    color: #FFC034;
+}
+
+.weather-icon-tstorm-foreground {
+    top: -70px;
+}
+
+.weather-widget-temp-container {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: top;
+}
+
+.weather-widget-temp-container h1{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    margin: 0;
+    color: white;
+}
+
+.weather-widget-separator {
+    width: 105%;
+    float: left;
+}
+
+.weather-widget-separator::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.weather-widget-refresh-container{
+    display: block;
+    float: none;
+}
+
+.weather-widget-refresh-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.refresh-button{
+    float: right;
+    padding: 0px 2px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 0px;
+}
+
+.refresh-button:hover {
+    color: white;
+    border-color: white;
+}

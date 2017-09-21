@@ -1,0 +1,46 @@
+<div class="row desktop-nav visible-for-large-and-up" id="desktop-nav">
+    <div class="large-3 column">
+        <a href="/" class="logo"><i class="fa fa-space-shuttle fa-4x logo-icon" aria-hidden="true"></i>Space Co.</a>
+    </div>
+    <div class="large-6 column align-center">
+        <nav>
+            <ul>
+                <!-- <li><a href="/" class="desktop-nav-button">Home</a></li>
+                <li><a href="/product" class="desktop-nav-button">Product</a></li>
+                <li><a href="/about" class="desktop-nav-button">About</a></li>
+                <li><a href="/contact" class="desktop-nav-button">Contact</a></li> -->
+                {% for section in sections %}
+                    <li><a href="/{{ section.address }}" class="desktop-nav-button">{{ section.name }}</a></li>
+                {% else %}
+
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="large-3 column align-right">
+        <a href=""><i class="fa fa-facebook-square fa-3x desktop-nav-social-media" aria-hidden="true"></i></a>
+        <a href=""><i class="fa fa-twitter-square fa-3x desktop-nav-social-media" aria-hidden="true"></i></a>
+        <a href=""><i class="fa fa-instagram fa-3x desktop-nav-social-media" aria-hidden="true"></i></a>
+    </div>
+</div>
+<div class="mobile-slide-out" id="mobile-slide-out">
+    <!-- <a href="/">Home</a>
+    <a href="/product">Product</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a> -->
+    {% for section in sections %}
+        <a href="/{{ section.address }}">{{ section.name }}</a>
+    {% else %}
+
+    {% endfor %}
+</div>
+<div class="row mobile-nav visible-for-small-and-medium-only" id="mobile-nav">
+    <div class="small-2 medium-2 column">
+        <a href="/"><i class="fa fa-space-shuttle fa-4x display-block" aria-hidden="true"></i></a>
+    </div>
+    <div class="small-8 medium-8 column">
+    </div>
+    <div class="small-2 medium-2 column align-right">
+        <i class="fa fa-bars fa-3x burger-button" aria-hidden="true" id="burger-button"></i>
+    </div>
+</div>

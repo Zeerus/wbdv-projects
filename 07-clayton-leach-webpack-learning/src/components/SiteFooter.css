@@ -1,0 +1,11 @@
+footer{
+    height: 200px;
+    word-wrap: 100%;
+    background: #000;
+    color: white;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
