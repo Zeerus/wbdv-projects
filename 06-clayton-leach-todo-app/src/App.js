@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'
 import './font-awesome-4.7.0/css/font-awesome.css'
 import './App.css';
 
@@ -84,8 +85,8 @@ class App extends Component {
 
     addList(listName){
         if(listName && listName.length){
-            var nextIndex = this.state.lists.length
             this.setState((prevState, props) => {
+                var nextIndex = prevState.lists.length;
                 prevState.lists[nextIndex] = {'name': listName, 'contents': {}};
                 return {lists: prevState.lists};
             });
@@ -95,8 +96,9 @@ class App extends Component {
     removeList(listKey){
         if(listKey && listKey.length){
             this.setState((prevState, props) => {
-                delete prevState.lists[listKey]
-                return {lists: prevState.lists};
+                var array = prevState.lists;
+                array.splice(listKey, 1);
+                return {lists: array};
             });
         }
     }
@@ -121,7 +123,12 @@ class App extends Component {
                     onClick={(listName) => this.addList(listName)}
                 />
                 <div className="lists-area">
-                    {this.renderLists()}
+                    <CSSTransitionGroup
+                        transitionName="list-transition"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
+                            {this.renderLists()}
+                    </CSSTransitionGroup>
                 </div>
             </div>
         );

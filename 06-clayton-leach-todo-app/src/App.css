@@ -104,7 +104,7 @@ Lists Section
     float: left;
     background: #777;
     display: inline-block;
-    min-width: calc(25% - 20px);
+    width: calc(25% - 20px);
     margin-right: 20px;
     margin-bottom: 20px;
     transition: left 0.3s, top 0.3s;
@@ -140,4 +140,30 @@ Lists Section
     background: #777;
     border: 1px solid white;
     text-align: center;
+}
+
+.list-transition-enter {
+  opacity: 0.01;
+}
+
+.list-transition-enter.list-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.list-transition-leave {
+  opacity: 1;
+  width: calc(25% - 20px);
+  height: 23px;
+}
+
+.list-transition-leave > * {
+    opacity: 0.01;
+}
+
+.list-transition-leave.list-transition-leave-active {
+  opacity: 0.01;
+  width: 0%;
+  height: 1px;
+  transition: opacity 300ms ease-in, width 300ms ease-in, height 300ms ease-in;
 }
