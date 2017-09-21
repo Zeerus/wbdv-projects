@@ -21,6 +21,11 @@ class TODOHeader extends Component {
         this.setState({ value: event.target.value });
     }
 
+    handleClick(value){
+        this.props.onClick(value);
+        document.getElementById("header-text-field").value = '';
+    }
+
     render() {
         return (
             <header>
@@ -32,6 +37,7 @@ class TODOHeader extends Component {
                     <div className="header-center">
                         <input
                             className="header-text-field"
+                            id="header-text-field"
                             onChange={(e) => this.handleChange(e)}
                             onKeyDown={(e) => this.handleEnterKey(e)}
                             type="text"
@@ -40,7 +46,7 @@ class TODOHeader extends Component {
                         <button
                             className="header-button"
                             id="header-button"
-                            onClick={(value) => this.props.onClick(this.state.value)}>
+                            onClick={(value) => this.handleClick(this.state.value)}>
                                 Submit
                         </button>
                     </div>
@@ -51,9 +57,44 @@ class TODOHeader extends Component {
 }
 
 class TODOListEntry extends Component {
+    handleEnterKey(event) {
+        if(event.keyCode === 13){
+            this.props.addListEntryFunc(this.props.listKey, '');
+        }
+    }
+
+    handleChange(event){
+        this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, event.target.value);
+    }
+
     render() {
         return (
-            <div></div>
+            <tr className="list-entry-row">
+                <td className="list-entry-check-container">
+                    <button
+                        className="list-entry-button-check"
+                        onClick={(listKey, listEntryKey) => this.props.checkEntry(this.props.listKey, this.props.listEntryKey)}>
+                            <i className={this.props.checked ? "fa fa-check" : "list-entry-button-nocheck"}></i>
+                    </button>
+                </td>
+                <td className="list-entry-text-container">
+                    <input
+                        className={"list-entry-text" + (this.props.checked ? " list-entry-text-checked" : "")}
+                        onChange={(e) => this.handleChange(e)}
+                        onKeyDown={(e) => this.handleEnterKey(e)}
+                        value={this.props.listEntryText}
+                        type="text"
+                        placeholder="Write a new task">
+                    </input>
+                </td>
+                <td className="list-entry-button-container">
+                    <button
+                        className="list-entry-delete-button"
+                        onClick={(listKey, listEntry) => this.props.removeEntry(this.props.listKey, this.props.listEntryKey)}>
+                            <i className="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
         );
     }
 }
@@ -61,11 +102,24 @@ class TODOListEntry extends Component {
 class TODOList extends Component {
     render() {
         return (
-            <div className="list-container">
-                <div className="list-header">
-                    <h1>{this.props.listName}</h1>
+            <div className="list-header">
+                <h1>{this.props.listName}</h1>
+                <div className="list-header-button-container">
                     <button
-                        className="list-close"
+                        id={"list-header-add-entry-button" + this.props.listKey}
+                        className="list-header-button"
+                        onClick={(listKey) => this.props.addEntryFunc(this.props.listKey, '')}>
+                            <i className="fa fa-plus"></i>
+                    </button>
+                    <button
+                        id={"list-header-collapse-button" + this.props.listKey}
+                        className="list-header-button"
+                        onClick={(listKey) => this.props.collapseFunc(this.props.listKey)}>
+                            <i className={this.props.collapsed? "fa fa-caret-right" : "fa fa-caret-down"}></i>
+                    </button>
+                    <button
+                        id = {"list-header-delete-button" + this.props.listKey}
+                        className="list-header-button"
                         onClick={(listKey) => this.props.deleteFunc(this.props.listKey)}>
                             <i className="fa fa-times"></i>
                     </button>
@@ -79,16 +133,107 @@ class App extends Component {
     constructor(){
         super();
         this.state = {
-            lists: []
+            currentKey: 1,
+            uniqueListEntryId: 1,
+            lists: {}
         }
+    }
+
+    addListEntry(listKey, listKeyEntryContents){
+        if(listKey && listKey.length){
+            this.setState((prevState, props) => {
+                var array = prevState.lists;
+                var nextId = prevState.uniqueListEntryId;
+                array[listKey]['contents'][nextId] = {checked: false, id: nextId, text: listKeyEntryContents};
+                array[listKey]['collapsed'] = false;
+                return {
+                    lists: prevState.lists,
+                    uniqueListEntryId: prevState.uniqueListEntryId + 1,
+                    currentKey: prevState.currentKey
+                }
+            });
+        }
+    }
+
+    checkEntry(listKey, listEntryKey){
+        if(listKey && listEntryKey){
+            this.setState((prevState, props) => {
+                var array = prevState.lists;
+                array[listKey]['contents'][listEntryKey]['checked'] = !(array[listKey]['contents'][listEntryKey]['checked']);
+                return {
+                    lists: array,
+                    uniqueListEntryId: prevState.uniqueListEntryId,
+                    currentKey: prevState.currentKey
+                }
+            });
+        }
+    }
+
+    modifyListEntry(listKey, listEntryKey, content){
+        if(listKey && listEntryKey && content){
+            this.setState((prevState, props) => {
+                var array = prevState.lists;
+                array[listKey]['contents'][listEntryKey]['text'] = content;
+                return {
+                    lists: array,
+                    uniqueListEntryId: prevState.uniqueListEntryId,
+                    currentKey: prevState.currentKey
+                }
+            });
+        }
+    }
+
+    removeListEntry(listKey, listEntryKey){
+        if(listKey && listEntryKey){
+            this.setState((prevState, props) => {
+                var array = prevState.lists;
+                delete array[listKey]['contents'][listEntryKey];
+                return {
+                    lists: array,
+                    uniqueListEntryId: prevState.uniqueListEntryId,
+                    currentKey: prevState.currentKey
+                }
+            })
+        }
+    }
+
+    renderListEntries(parentListKey){
+        return Object.keys(this.state.lists[parentListKey]['contents']).map((key) => {
+            return (
+                <TODOListEntry
+                    key={key}
+                    listKey={parentListKey}
+                    listEntryKey={this.state.lists[parentListKey]['contents'][key]['id']}
+                    checked={this.state.lists[parentListKey]['contents'][key]['checked']}
+                    listEntryText={this.state.lists[parentListKey]['contents'][key]['text']}
+                    checkEntry={(listKey, listEntryKey) => this.checkEntry(listKey, listEntryKey)}
+                    modifyEntry={(listKey, listEntryKey, content) => this.modifyListEntry(listKey, listEntryKey, content)}
+                    removeEntry={(listKey, listEntryKey) => this.removeListEntry(listKey, listEntryKey)}
+                    addListEntryFunc={(listKey, listKeyEntryContents) => this.addListEntry(listKey, listKeyEntryContents)}
+                />
+            );
+        });
     }
 
     addList(listName){
         if(listName && listName.length){
             this.setState((prevState, props) => {
-                var nextIndex = prevState.lists.length;
-                prevState.lists[nextIndex] = {'name': listName, 'contents': {}};
-                return {lists: prevState.lists};
+                var nextId = prevState.currentKey.toString();
+                prevState.lists[nextId] = {name: listName, id: nextId,collapsed: false, contents: {}};
+                return {
+                    lists: prevState.lists,
+                    currentKey: prevState.currentKey + 1,
+                };
+            });
+        }
+    }
+
+    collapseList(listKey){
+        if(listKey && listKey.length){
+            this.setState((prevState, props) => {
+                var array = prevState.lists;
+                array[listKey]['collapsed'] = !(array[listKey]['collapsed']);
+                return {lists: array};
             });
         }
     }
@@ -97,7 +242,7 @@ class App extends Component {
         if(listKey && listKey.length){
             this.setState((prevState, props) => {
                 var array = prevState.lists;
-                array.splice(listKey, 1);
+                delete array[listKey]
                 return {lists: array};
             });
         }
@@ -106,12 +251,21 @@ class App extends Component {
     renderLists(){
         return Object.keys(this.state.lists).map((key) => {
                     return (
-                        <TODOList
-                            key={key}
-                            listKey={key}
-                            listName={this.state.lists[key]['name']}
-                            deleteFunc={(listKey) => this.removeList(listKey)}
-                        />
+                        <div className="list-container" key={this.state.lists[key]['id']}>
+                            <TODOList
+                                listKey={this.state.lists[key]['id']}
+                                listName={this.state.lists[key]['name']}
+                                collapsed={this.state.lists[key]['collapsed']}
+                                addEntryFunc={(listKey, listKeyEntryContents) => this.addListEntry(listKey, listKeyEntryContents)}
+                                collapseFunc={(listKey) => this.collapseList(listKey)}
+                                deleteFunc={(listKey) => this.removeList(listKey)}
+                            />
+                            <table className={"list-entry-table " + (this.state.lists[key]['collapsed'] ? "collapsed" : "")} >
+                                <tbody>
+                                    {this.renderListEntries(key)}
+                                </tbody>
+                            </table>
+                        </div>
                     )
                 });
     }

@@ -3,11 +3,13 @@
 
 /*
 -------------------
-Yellow      Grey
-#E88714   #5E5C56
+Yellow      Grey      off-white
+#E88714   #5E5C56      #E8B26C
 -------------------
 */
-
+* {
+    font-family: "Open Sans", sans-serif;
+}
 /*-------------------
 Header Section
 -------------------*/
@@ -130,35 +132,46 @@ Lists Section
     float: left;
     margin: 0px;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
 
 }
 
-.list-close{
+.list-header-button-container{
+    float:right;
+}
+
+.list-header-button{
     color: white;
-    float: right;
+    width: 24px;
+    float: left;
     background: #777;
     border: 1px solid white;
     text-align: center;
+    margin-left: 5px;
+    outline: none;
+}
+
+.list-header-button:active{
+    background: #555;
 }
 
 .list-transition-enter {
-  opacity: 0.01;
+    opacity: 0.01;
 }
 
 .list-transition-enter.list-transition-enter-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in;
+    opacity: 1;
+    transition: opacity 300ms ease-in;
 }
 
 .list-transition-leave {
-  opacity: 1;
-  width: calc(25% - 20px);
-  height: 23px;
+    opacity: 1;
+    height: 23px;
 }
 
 .list-transition-leave > * {
     opacity: 0.01;
+    width: 0%;
 }
 
 .list-transition-leave.list-transition-leave-active {
@@ -166,4 +179,82 @@ Lists Section
   width: 0%;
   height: 1px;
   transition: opacity 300ms ease-in, width 300ms ease-in, height 300ms ease-in;
+}
+
+/*-------------------
+List Entry Section
+-------------------*/
+.list-entry-table{
+    background: #E8B26C;
+    width: 100%;
+    border: 1px solid #997547;
+    border-collapse: collapse;
+}
+
+.list-entry-table.collapsed > *{
+    display: none;
+}
+
+.list-entry-row td{
+    border-bottom: 1px solid #997547;
+}
+
+.list-entry-check-container{
+    width:24px;
+}
+
+.list-entry-button-check{
+    background: transparent;
+    border: 1px solid #5C462B;
+    border-radius: 15px;
+    width:24px;
+    height: 22px;
+}
+
+.list-entry-button-check i{
+    color: #5C462B;
+    position: relative;
+    left: -3px;
+}
+
+.list-entry-button-nocheck{
+    display:none;
+}
+
+.list-entry-text-container{
+    width: calc(100% - 48px);
+    padding-left: 12px;
+}
+
+.list-entry-text{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    color: #5C462B;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.list-entry-text-checked{
+    text-decoration: line-through;
+}
+
+.list-entry-button-container{
+}
+
+.list-entry-delete-button{
+    color: #5C462B;
+    width: 24px;
+    float: right;
+    background: transparent;
+    border: none;
+    text-align: center;
+    margin-left: 5px;
+    outline: none;
+}
+
+.list-entry-delete-button i{
+    position: relative;
+    left: -2px;
 }
