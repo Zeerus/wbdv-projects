@@ -126,9 +126,9 @@ Lists Section
     float: left;
     background: #777;
     display: inline-block;
-    width: calc(25% - 20px);
-    margin-right: 20px;
-    margin-bottom: 20px;
+    width: calc(25% - (4% / 3.0));
+    margin-right: 1%;
+    margin-bottom: 10px;
     transition: left 0.3s, top 0.3s;
     transition-timing-function: ease-in-out;
 }
@@ -214,6 +214,14 @@ Lists Section
   transition: opacity 300ms ease-in, width 300ms ease-in, height 300ms ease-in;
 }
 
+@media (min-width: 400px) and (max-width: 1200px){
+    .list-container{
+        width: calc((100% / 3.0) - 1%);
+        margin-right: 1%;
+        margin-bottom: 10px;
+    }
+}
+
 /*-------------------
 List Entry Section
 -------------------*/
@@ -230,7 +238,6 @@ List Entry Section
 
 .list-entry-row td{
     border-bottom: 1px solid #998C7A;
-    height: 25px;
 }
 
 .list-entry-check-container{
@@ -269,7 +276,9 @@ List Entry Section
     border: none;
     background: transparent;
     outline: none;
-    height: 25px;
+    height: 20px;
+    resize: none;
+    padding: 0;
 }
 
 .list-entry-text-checked{

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'
-import Dimensions from 'react-dimensions'
 import './font-awesome-4.7.0/css/font-awesome.css'
 import './App.css';
 
@@ -8,7 +7,8 @@ class TODOHeader extends Component {
     constructor(){
         super();
         this.state = {
-            value: ''
+            value: '',
+            windowWidth: 0
         }
     }
 
@@ -30,9 +30,11 @@ class TODOHeader extends Component {
     }
 
     render() {
-        var {height, width} = Dimensions.get('window');
-        if(width < 500){
-
+        if(window.innerWidth < 500){
+            return (
+                <header>
+                </header>
+            );
         } else {
             return (
                 <header>
@@ -66,6 +68,7 @@ class TODOHeader extends Component {
 
 class TODOListEntry extends Component {
     componentDidMount(){
+        window.addEventListener('resize', this.resizeTextArea.bind(this));
         document.getElementById('list-entry-text-' + this.props.listEntryKey).focus();
     }
 
@@ -89,7 +92,14 @@ class TODOListEntry extends Component {
         }
     }
 
+    resizeTextArea(){
+        var listEntry =document.getElementById('list-entry-text-' + this.props.listEntryKey);
+        listEntry.style.height = "0px";
+        listEntry.style.height = listEntry.scrollHeight + "px";
+    }
+
     handleChange(event){
+        this.resizeTextArea();
         this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, event.target.value);
     }
 
@@ -104,7 +114,7 @@ class TODOListEntry extends Component {
                     </button>
                 </td>
                 <td className="list-entry-text-container">
-                    <input
+                    <textarea
                         id={'list-entry-text-' + this.props.listEntryKey}
                         className={"list-entry-text" + (this.props.checked ? " list-entry-text-checked" : "")}
                         onChange={(e) => this.handleChange(e)}
@@ -112,7 +122,7 @@ class TODOListEntry extends Component {
                         value={this.props.listEntryText}
                         type="text"
                         placeholder="">
-                    </input>
+                    </textarea>
                 </td>
                 <td className="list-entry-button-container">
                     <button
@@ -201,8 +211,9 @@ class App extends Component {
         }
     }
 
-    modifyListEntry(listKey, listEntryKey, content){
-        if(listKey && listEntryKey && content){
+    modifyListEntry(listKey, listEntryKey, content){        
+        if(listKey && listEntryKey){
+            console.log("called with " + listKey + " " + listEntryKey + " " + content)
             this.setState((prevState, props) => {
                 var array = prevState.lists;
                 array[listKey]['contents'][listEntryKey]['text'] = content;
