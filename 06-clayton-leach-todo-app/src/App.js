@@ -203,12 +203,27 @@ class App extends Component {
             this.setState((prevState, props) => {
                 var array = prevState.lists;
                 var nextId = prevState.uniqueListEntryId;
-                array[listKey]['contents'][nextId] = {checked: false, id: nextId, text: listKeyEntryContents};
-                array[listKey]['collapsed'] = false;
-                return {
-                    lists: prevState.lists,
-                    uniqueListEntryId: prevState.uniqueListEntryId + 1,
-                    currentKey: prevState.currentKey
+                var lastObj;
+                Object.keys(this.state.lists[listKey]['contents']).map((key) =>{
+                    var index = 0;
+                    if(this.state.lists[listKey]['contents'][key]['id'] > index){
+                        lastObj = this.state.lists[listKey]['contents'][key];
+                    }
+                });
+                if((!lastObj) || (lastObj['text'] && lastObj['text'].length)){
+                    array[listKey]['contents'][nextId] = {checked: false, id: nextId, text: listKeyEntryContents};
+                    array[listKey]['collapsed'] = false;
+                    return {
+                        lists: prevState.lists,
+                        uniqueListEntryId: prevState.uniqueListEntryId + 1,
+                        currentKey: prevState.currentKey
+                    }
+                } else {
+                    return {
+                        lists: prevState.lists,
+                        uniqueListEntryId: prevState.uniqueListEntryId,
+                        currentKey: prevState.currentKey
+                    }
                 }
             });
         }

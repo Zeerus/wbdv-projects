@@ -131,6 +131,7 @@ Lists Section
     margin-bottom: 10px;
     transition: left 0.3s, top 0.3s;
     transition-timing-function: ease-in-out;
+    
 }
 
 .list-header{
