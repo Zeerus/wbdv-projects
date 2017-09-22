@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'
+import Dimensions from 'react-dimensions'
 import './font-awesome-4.7.0/css/font-awesome.css'
 import './App.css';
 
@@ -29,32 +30,37 @@ class TODOHeader extends Component {
     }
 
     render() {
-        return (
-            <header>
-                <div className="header-container">
-                    <div className="header-left">
-                        <i className="fa fa-address-book fa-3x header-logo"></i>
-                        <h1 className="header-logo-text">TODO:</h1>
+        var {height, width} = Dimensions.get('window');
+        if(width < 500){
+
+        } else {
+            return (
+                <header>
+                    <div className="header-container">
+                        <div className="header-left">
+                            <i className="fa fa-address-book fa-3x header-logo"></i>
+                            <h1 className="header-logo-text">TODO:</h1>
+                        </div>
+                        <div className="header-center">
+                            <input
+                                className="header-text-field"
+                                id="header-text-field"
+                                onChange={(e) => this.handleChange(e)}
+                                onKeyDown={(e) => this.handleEnterKey(e)}
+                                type="text"
+                                placeholder="Enter a list name">
+                            </input>
+                            <button
+                                className="header-button"
+                                id="header-button"
+                                onClick={(value) => this.handleClick(this.state.value)}>
+                                    Submit
+                            </button>
+                        </div>
                     </div>
-                    <div className="header-center">
-                        <input
-                            className="header-text-field"
-                            id="header-text-field"
-                            onChange={(e) => this.handleChange(e)}
-                            onKeyDown={(e) => this.handleEnterKey(e)}
-                            type="text"
-                            placeholder="Enter a list name">
-                        </input>
-                        <button
-                            className="header-button"
-                            id="header-button"
-                            onClick={(value) => this.handleClick(this.state.value)}>
-                                Submit
-                        </button>
-                    </div>
-                </div>
-            </header>
-        );
+                </header>
+            );
+        }
     }
 }
 
