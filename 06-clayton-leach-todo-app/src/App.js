@@ -24,6 +24,8 @@ class TODOHeader extends Component {
     handleClick(value){
         this.props.onClick(value);
         document.getElementById("header-text-field").value = '';
+        this.setState({ value: '' });
+        document.getElementById("header-text-field").focus();
     }
 
     render() {
@@ -57,9 +59,27 @@ class TODOHeader extends Component {
 }
 
 class TODOListEntry extends Component {
+    componentDidMount(){
+        document.getElementById('list-entry-text-' + this.props.listEntryKey).focus();
+    }
+
     handleEnterKey(event) {
         if(event.keyCode === 13){
             this.props.addListEntryFunc(this.props.listKey, '');
+        }
+        if(event.keyCode === 8){
+            var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
+            if (listEntry && listEntry.value && listEntry.value.length === 1){
+                listEntry.value = '';
+                this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
+            } else {
+                var selectionStart = listEntry.selectionStart;
+                var selectionEnd = listEntry.selectionEnd;
+                if (selectionStart === 0 && selectionEnd === listEntry.value.length){
+                    listEntry.value = '';
+                    this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
+                }
+            }
         }
     }
 
@@ -79,12 +99,13 @@ class TODOListEntry extends Component {
                 </td>
                 <td className="list-entry-text-container">
                     <input
+                        id={'list-entry-text-' + this.props.listEntryKey}
                         className={"list-entry-text" + (this.props.checked ? " list-entry-text-checked" : "")}
                         onChange={(e) => this.handleChange(e)}
                         onKeyDown={(e) => this.handleEnterKey(e)}
                         value={this.props.listEntryText}
                         type="text"
-                        placeholder="Write a new task">
+                        placeholder="">
                     </input>
                 </td>
                 <td className="list-entry-button-container">
@@ -100,6 +121,10 @@ class TODOListEntry extends Component {
 }
 
 class TODOList extends Component {
+    componentDidMount(){
+        this.props.addEntryFunc(this.props.listKey, '');
+    }
+
     render() {
         return (
             <div className="list-header">
@@ -109,19 +134,19 @@ class TODOList extends Component {
                         id={"list-header-add-entry-button" + this.props.listKey}
                         className="list-header-button"
                         onClick={(listKey) => this.props.addEntryFunc(this.props.listKey, '')}>
-                            <i className="fa fa-plus"></i>
+                            <i className="fa fa-plus list-header-button-icons"></i>
                     </button>
                     <button
                         id={"list-header-collapse-button" + this.props.listKey}
                         className="list-header-button"
                         onClick={(listKey) => this.props.collapseFunc(this.props.listKey)}>
-                            <i className={this.props.collapsed? "fa fa-caret-right" : "fa fa-caret-down"}></i>
+                            <i className={(this.props.collapsed? "fa fa-caret-right" : "fa fa-caret-down") + " list-header-button-icons"}></i>
                     </button>
                     <button
                         id = {"list-header-delete-button" + this.props.listKey}
                         className="list-header-button"
                         onClick={(listKey) => this.props.deleteFunc(this.props.listKey)}>
-                            <i className="fa fa-times"></i>
+                            <i className="fa fa-times list-header-button-icons"></i>
                     </button>
                 </div>
             </div>
@@ -141,6 +166,7 @@ class App extends Component {
 
     addListEntry(listKey, listKeyEntryContents){
         if(listKey && listKey.length){
+            console.log(listKey + " " + listKeyEntryContents);
             this.setState((prevState, props) => {
                 var array = prevState.lists;
                 var nextId = prevState.uniqueListEntryId;
@@ -273,6 +299,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <div className="header-spacer"></div>
                 <TODOHeader
                     onClick={(listName) => this.addList(listName)}
                 />
