@@ -1,25 +1,44 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 /*
 -------------------
 Yellow      Grey      off-white
-#E88714   #5E5C56      #E8B26C
+#E88714   #5E5C56      #E8D4BA
+
+ Blue
+#E88714
 -------------------
 */
+
+body {
+    background: #eee;
+}
+
 * {
     font-family: "Open Sans", sans-serif;
 }
 /*-------------------
 Header Section
 -------------------*/
+.header-spacer{
+    height:100px;
+    width: 100%;
+}
+
 header {
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
     width:100%;
     background: #E88714;
     height: 100px;
     border-bottom: 1px solid #5E5C56;
+    z-index:20;
 }
 
 header::after {
@@ -52,6 +71,7 @@ header::after {
     float: left;
 }
 .header-logo-text{
+    font-family: "Space Mono", sans-serif;
     color: white;
     float: left;
     display: inline-block;
@@ -142,17 +162,30 @@ Lists Section
 
 .list-header-button{
     color: white;
-    width: 24px;
+    width: 20px;
+    height: 20px;
     float: left;
-    background: #777;
-    border: 1px solid white;
+    background: transparent;
+    border: none;
+    border-radius: 30px;
     text-align: center;
     margin-left: 5px;
     outline: none;
 }
 
+.list-header-button-icons{
+    position: relative;
+    left: -6px;
+    top: -1px;
+    display: inline-block;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
 .list-header-button:active{
-    background: #555;
+    background: #374F59;
 }
 
 .list-transition-enter {
@@ -185,9 +218,9 @@ Lists Section
 List Entry Section
 -------------------*/
 .list-entry-table{
-    background: #E8B26C;
+    background: #E8D4BA;
     width: 100%;
-    border: 1px solid #997547;
+    border: 1px solid #998C7A;
     border-collapse: collapse;
 }
 
@@ -196,7 +229,8 @@ List Entry Section
 }
 
 .list-entry-row td{
-    border-bottom: 1px solid #997547;
+    border-bottom: 1px solid #998C7A;
+    height: 25px;
 }
 
 .list-entry-check-container{
@@ -205,16 +239,17 @@ List Entry Section
 
 .list-entry-button-check{
     background: transparent;
-    border: 1px solid #5C462B;
+    border: 1px solid #5C5449;
     border-radius: 15px;
-    width:24px;
-    height: 22px;
+    width:20px;
+    height: 20px;
+    outline: none;
 }
 
 .list-entry-button-check i{
-    color: #5C462B;
+    color: #5C5449;
     position: relative;
-    left: -3px;
+    left: -4px;
 }
 
 .list-entry-button-nocheck{
@@ -229,29 +264,32 @@ List Entry Section
 .list-entry-text{
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    color: #5C462B;
+    color: #5C5449;
     width: 100%;
     border: none;
     background: transparent;
     outline: none;
+    height: 25px;
 }
 
 .list-entry-text-checked{
     text-decoration: line-through;
 }
 
-.list-entry-button-container{
-}
-
 .list-entry-delete-button{
-    color: #5C462B;
-    width: 24px;
+    color: #5C5449;
+    width: 20px;
     float: right;
     background: transparent;
     border: none;
+    border-radius: 30px;
     text-align: center;
     margin-left: 5px;
     outline: none;
+}
+
+.list-entry-delete-button:active{
+    background: #B5A591;
 }
 
 .list-entry-delete-button i{
