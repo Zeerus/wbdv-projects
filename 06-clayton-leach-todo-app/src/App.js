@@ -14,6 +14,8 @@ class TODOHeader extends Component {
 
     handleEnterKey(event) {
         if(event.keyCode === 13){
+            event.stopPropagation();
+            event.preventDefault();
             document.getElementById("header-button").click();
         }
     }
@@ -30,50 +32,58 @@ class TODOHeader extends Component {
     }
 
     render() {
-        if(window.innerWidth < 500){
-            return (
-                <header>
-                </header>
-            );
-        } else {
-            return (
-                <header>
-                    <div className="header-container">
-                        <div className="header-left">
-                            <i className="fa fa-address-book fa-3x header-logo"></i>
-                            <h1 className="header-logo-text">TODO:</h1>
-                        </div>
-                        <div className="header-center">
-                            <input
-                                className="header-text-field"
-                                id="header-text-field"
-                                onChange={(e) => this.handleChange(e)}
-                                onKeyDown={(e) => this.handleEnterKey(e)}
-                                type="text"
-                                placeholder="Enter a list name">
-                            </input>
-                            <button
-                                className="header-button"
-                                id="header-button"
-                                onClick={(value) => this.handleClick(this.state.value)}>
-                                    Submit
-                            </button>
-                        </div>
+        return (
+            <header>
+                <div className="header-container">
+                    <div className="header-left">
+                        <i className="fa fa-address-book fa-3x header-logo"></i>
+                        <h1 className="header-logo-text">TODO:</h1>
                     </div>
-                </header>
-            );
-        }
+                    <div className="header-center">
+                        <input
+                            className="header-text-field"
+                            id="header-text-field"
+                            onChange={(e) => this.handleChange(e)}
+                            onKeyDown={(e) => this.handleEnterKey(e)}
+                            type="text"
+                            placeholder="Enter a list name">
+                        </input>
+                        <button
+                            className="header-button"
+                            id="header-button"
+                            onClick={(value) => this.handleClick(this.state.value)}>
+                                Submit
+                        </button>
+                    </div>
+                </div>
+            </header>
+        );
     }
 }
 
 class TODOListEntry extends Component {
+    constructor(){
+        super();
+        this.state = {
+            entryHeight: "20px"
+        };
+        this.boundResizeTextArea = this.resizeTextArea.bind(this);
+    }
+
     componentDidMount(){
-        window.addEventListener('resize', this.resizeTextArea.bind(this));
+        window.addEventListener('resize', this.boundResizeTextArea);
+        this.resizeTextArea();
         document.getElementById('list-entry-text-' + this.props.listEntryKey).focus();
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('resize', this.boundResizeTextArea)
     }
 
     handleEnterKey(event) {
         if(event.keyCode === 13){
+            event.stopPropagation();
+            event.preventDefault();
             this.props.addListEntryFunc(this.props.listKey, '');
         }
         if(event.keyCode === 8){
@@ -93,9 +103,15 @@ class TODOListEntry extends Component {
     }
 
     resizeTextArea(){
-        var listEntry =document.getElementById('list-entry-text-' + this.props.listEntryKey);
-        listEntry.style.height = "0px";
-        listEntry.style.height = listEntry.scrollHeight + "px";
+        var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
+        listEntry.style.height = "20px";
+        var newHeight = listEntry.scrollHeight + 'px';
+        listEntry.style.height = newHeight;
+        this.setState((prevstate, props) => {
+            return {
+                entryHeight: newHeight
+            }
+        });
     }
 
     handleChange(event){
@@ -121,7 +137,7 @@ class TODOListEntry extends Component {
                         onKeyDown={(e) => this.handleEnterKey(e)}
                         value={this.props.listEntryText}
                         type="text"
-                        placeholder="">
+                        placeholder=" ">
                     </textarea>
                 </td>
                 <td className="list-entry-button-container">
@@ -182,7 +198,6 @@ class App extends Component {
 
     addListEntry(listKey, listKeyEntryContents){
         if(listKey && listKey.length){
-            console.log(listKey + " " + listKeyEntryContents);
             this.setState((prevState, props) => {
                 var array = prevState.lists;
                 var nextId = prevState.uniqueListEntryId;
@@ -211,9 +226,8 @@ class App extends Component {
         }
     }
 
-    modifyListEntry(listKey, listEntryKey, content){        
+    modifyListEntry(listKey, listEntryKey, content){
         if(listKey && listEntryKey){
-            console.log("called with " + listKey + " " + listEntryKey + " " + content)
             this.setState((prevState, props) => {
                 var array = prevState.lists;
                 array[listKey]['contents'][listEntryKey]['text'] = content;
