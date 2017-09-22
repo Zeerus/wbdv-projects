@@ -210,6 +210,7 @@ class App extends Component {
                     if(this.state.lists[listKey]['contents'][key]['id'] > index){
                         lastObj = this.state.lists[listKey]['contents'][key];
                     }
+                    return null;
                 });
                 if((!lastObj) || (lastObj['text'] && lastObj['text'].length)){
                     array[listKey]['contents'][nextId] = {checked: false, id: nextId, text: listKeyEntryContents};
