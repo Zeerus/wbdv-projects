@@ -7,8 +7,6 @@
 Yellow      Grey      off-white
 #E88714   #5E5C56      #E8D4BA
 
- Blue
-E88714
 -------------------
 */
 
@@ -186,7 +184,7 @@ Lists Section
 }
 
 .list-header-button:active{
-    background: #374F59;
+    background: #A6610F;
 }
 
 .list-transition-enter {
