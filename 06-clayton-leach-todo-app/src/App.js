@@ -202,6 +202,7 @@ class App extends Component {
         if(listKey && listKey.length){
             this.setState((prevState, props) => {
                 var array = prevState.lists;
+                array[listKey]['collapsed'] = false;
                 var nextId = prevState.uniqueListEntryId;
                 var lastObj;
                 Object.keys(this.state.lists[listKey]['contents']).map((key) =>{
@@ -212,7 +213,6 @@ class App extends Component {
                 });
                 if((!lastObj) || (lastObj['text'] && lastObj['text'].length)){
                     array[listKey]['contents'][nextId] = {checked: false, id: nextId, text: listKeyEntryContents};
-                    array[listKey]['collapsed'] = false;
                     return {
                         lists: prevState.lists,
                         uniqueListEntryId: prevState.uniqueListEntryId + 1,
