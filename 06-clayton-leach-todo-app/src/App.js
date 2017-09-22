@@ -103,15 +103,17 @@ class TODOListEntry extends Component {
     }
 
     resizeTextArea(){
-        var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
-        listEntry.style.height = "20px";
-        var newHeight = listEntry.scrollHeight + 'px';
-        listEntry.style.height = newHeight;
-        this.setState((prevstate, props) => {
-            return {
-                entryHeight: newHeight
-            }
-        });
+        if(!this.props.collapsed){
+            var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
+            listEntry.style.height = "20px";
+            var newHeight = listEntry.scrollHeight + 'px';
+            listEntry.style.height = newHeight;
+            this.setState((prevstate, props) => {
+                return {
+                    entryHeight: newHeight
+                }
+            });
+        }
     }
 
     handleChange(event){
@@ -262,6 +264,7 @@ class App extends Component {
                     listKey={parentListKey}
                     listEntryKey={this.state.lists[parentListKey]['contents'][key]['id']}
                     checked={this.state.lists[parentListKey]['contents'][key]['checked']}
+                    collapsed={this.state.lists[parentListKey]['collapsed']}
                     listEntryText={this.state.lists[parentListKey]['contents'][key]['text']}
                     checkEntry={(listKey, listEntryKey) => this.checkEntry(listKey, listEntryKey)}
                     modifyEntry={(listKey, listEntryKey, content) => this.modifyListEntry(listKey, listEntryKey, content)}

@@ -253,7 +253,7 @@ Lists Section
     }
 }
 
-@media (min-width: 1301px) and (max-width: 1500px){
+@media (min-width: 1301px){
     .list-container{
         width: calc((100% / 3.0) - 1%);
         margin-right: 1%;
