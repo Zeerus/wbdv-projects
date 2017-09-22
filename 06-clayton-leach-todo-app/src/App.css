@@ -8,7 +8,7 @@ Yellow      Grey      off-white
 #E88714   #5E5C56      #E8D4BA
 
  Blue
-#E88714
+E88714
 -------------------
 */
 
@@ -62,7 +62,7 @@ header::after {
 
 .header-left {
     float: left;
-    width: 33%;
+    width: 29%;
 }
 
 .header-logo{
@@ -80,7 +80,7 @@ header::after {
 
 .header-center{
     float: left;
-    width: 33%;
+    width: 45%;
     text-align: right;
 }
 
