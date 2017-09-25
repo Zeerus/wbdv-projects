@@ -65,7 +65,8 @@ class TODOListEntry extends Component {
     constructor(){
         super();
         this.state = {
-            entryHeight: "20px"
+            entryHeight: "20px",
+            value: ''
         };
         this.boundResizeTextArea = this.resizeTextArea.bind(this);
     }
@@ -82,24 +83,25 @@ class TODOListEntry extends Component {
 
     handleEnterKey(event) {
         if(event.keyCode === 13){
+            this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, this.state.value);
             event.stopPropagation();
             event.preventDefault();
             this.props.addListEntryFunc(this.props.listKey, '');
         }
-        if(event.keyCode === 8){
-            var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
-            if (listEntry && listEntry.value && listEntry.value.length === 1){
-                listEntry.value = '';
-                this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
-            } else {
-                var selectionStart = listEntry.selectionStart;
-                var selectionEnd = listEntry.selectionEnd;
-                if (selectionStart === 0 && selectionEnd === listEntry.value.length){
-                    listEntry.value = '';
-                    this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
-                }
-            }
-        }
+        // if(event.keyCode === 8){
+        //     var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
+        //     if (listEntry && listEntry.value && listEntry.value.length === 1){
+        //         listEntry.value = '';
+        //         this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
+        //     } else {
+        //         var selectionStart = listEntry.selectionStart;
+        //         var selectionEnd = listEntry.selectionEnd;
+        //         if (selectionStart === 0 && selectionEnd === listEntry.value.length){
+        //             listEntry.value = '';
+        //             this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
+        //         }
+        //     }
+        // }
     }
 
     resizeTextArea(){
@@ -116,9 +118,18 @@ class TODOListEntry extends Component {
         }
     }
 
+    handleUnfocus(){
+        this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, this.state.value);
+    }
+
     handleChange(event){
+        var textValue = event.target.value;
+        this.setState((prevstate, props) => {
+            return { value: textValue};
+        })
         this.resizeTextArea();
-        this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, event.target.value);
+        event.target.focus();
+        // this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, event.target.value);
     }
 
     render() {
@@ -137,7 +148,8 @@ class TODOListEntry extends Component {
                         className={"list-entry-text" + (this.props.checked ? " list-entry-text-checked" : "")}
                         onChange={(e) => this.handleChange(e)}
                         onKeyDown={(e) => this.handleEnterKey(e)}
-                        value={this.props.listEntryText}
+                        onBlur={(e) => this.handleUnfocus(e)}
+                        value={this.state.value}
                         type="text"
                         placeholder=" ">
                     </textarea>
