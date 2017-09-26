@@ -88,20 +88,6 @@ class TODOListEntry extends Component {
             event.preventDefault();
             this.props.addListEntryFunc(this.props.listKey, '');
         }
-        // if(event.keyCode === 8){
-        //     var listEntry = document.getElementById('list-entry-text-' + this.props.listEntryKey);
-        //     if (listEntry && listEntry.value && listEntry.value.length === 1){
-        //         listEntry.value = '';
-        //         this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
-        //     } else {
-        //         var selectionStart = listEntry.selectionStart;
-        //         var selectionEnd = listEntry.selectionEnd;
-        //         if (selectionStart === 0 && selectionEnd === listEntry.value.length){
-        //             listEntry.value = '';
-        //             this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, '');
-        //         }
-        //     }
-        // }
     }
 
     resizeTextArea(){
@@ -129,7 +115,6 @@ class TODOListEntry extends Component {
         })
         this.resizeTextArea();
         event.target.focus();
-        // this.props.modifyEntry(this.props.listKey, this.props.listEntryKey, event.target.value);
     }
 
     render() {
