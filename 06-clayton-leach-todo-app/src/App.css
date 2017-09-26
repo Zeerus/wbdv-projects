@@ -335,7 +335,7 @@ Color Picker Specific
 Media queries
 ---------------*/
 
-@media (min-width: 0px) and (max-width: 699px){
+@media (min-width: 0px) and (max-width: 920px){
     .header-logo-text{
         display: none;
     }
@@ -362,7 +362,7 @@ Media queries
     }
 }
 
-@media (min-width: 700px) and (max-width: 1300px){
+@media (min-width: 921px) and (max-width: 1425px){
     .list-container{
         width: calc((100% / 2.0) - 1%);
         margin-right: 1%;
@@ -374,7 +374,7 @@ Media queries
     }
 }
 
-@media (min-width: 1301px){
+@media (min-width: 1426px){
     .list-container{
         width: calc((100% / 3.0) - 1%);
         margin-right: 1%;
