@@ -61,6 +61,141 @@ class TODOHeader extends Component {
     }
 }
 
+//Thanks wikipedia!
+function hslToRGB(h, s, l){
+    var r, g, b;
+
+    if(s === 0){
+        r = g = b = l;
+    } else {
+        var hue2rgb = function hue2rgb(p, q, t){
+            if(t < 0) t += 1;
+            if(t > 1) t -= 1;
+            if(t < 1/6) return p + (q - p) * 6 * t;
+            if(t < 1/2) return q;
+            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+        }
+
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+    }
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
+
+//Thanks again wikipedia!
+function rgbToHSL(r, g, b){
+    var h, s, l;
+
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
+
+    l = (max + min) / 2;
+    l = l / 255;
+
+    if(max === min){
+        h = s = 0;
+    } else {
+        if(max === r) h = (60 * ((g - b) / (max - min))) % 360;
+        if(max === g) h = (60 * ((b - r) / (max - min))) + 120;
+        if(max === b) h = (60 * ((r - g) / (max - min))) + 240;
+        if(h < 0) h = 360 + h;
+
+        if(l > 0.5) s = ((max - min) / ( 2 - max - min));
+        if(l <= 0.5) s = ((max - min) / (max + min));
+    }
+
+    return [h, s, l];
+}
+
+class TODOColorPicker extends Component {
+    constructor(){
+        super();
+        this.state = {
+            'currentColor': {
+                'r': 255,
+                'g': 255,
+                'b': 255,
+                'a': 1.0
+            }
+        }
+    }
+
+    componentDidMount(){
+        var canvas = document.getElementById("color-picker-canvas-" + this.props.listKey)
+        canvas.width = "200";
+        canvas.height = "200";
+        var context = canvas.getContext('2d');
+        var colorWheel = context.createImageData(200, 200);
+        var imageData = colorWheel.data;
+        for(var i = 0.0; i < 100.0; i = i + 1.0){
+            for(var j = 0.0; j < 360.0; j = j + 0.25){
+                //Find the image coordinates.
+                var x = Math.round(((i * Math.cos(j * Math.PI / 180.0))) + 100);
+                var y = Math.round(((i * Math.sin(j * Math.PI / 180.0))) + 100);
+
+
+                //  * (Math.PI / 180)
+
+                //Calculate the color
+                var pixelColor = hslToRGB(j * Math.PI / 180.0 / ( 2 * Math.PI), i / 99, 0.55);
+
+                imageData[((x + 200 * y) * 4)] = pixelColor[0]; //Red pixel
+                imageData[((x + 200 * y) * 4) + 1] = pixelColor[1]; //Green pixel
+                imageData[((x + 200 * y) * 4) + 2] = pixelColor[2]; //Blue pixel
+                imageData[((x + 200 * y) * 4) + 3] = 255; //Alpha
+            }
+        }
+
+        context.putImageData(colorWheel, 0, 0);
+    }
+
+    render() {
+        return (
+            <div>
+                <div
+                    className="list-color-wheel-container">
+                    <canvas
+                        id={"color-picker-canvas-" + this.props.listKey}
+                        className="list-color-picker-canvas">
+                        width="200px"
+                        height="200px"
+                    </canvas>
+                </div>
+                <div
+                    className="list-color-wheel-controls-container">
+                        <label className="list-color-wheel-labels">Color:</label>
+                        <input
+                            type="text"
+                            className="list-color-wheel-controls-color">
+                        </input>
+                        <br></br>
+                        <label className="list-color-wheel-labels">R:</label>
+                        <input
+                            type="text"
+                            className="list-color-wheel-controls-channels">
+                        </input>
+                        <br></br>
+                        <label className="list-color-wheel-labels">G:</label>
+                        <input
+                            type="text"
+                            className="list-color-wheel-controls-channels">
+                        </input>
+                        <br></br>
+                        <label className="list-color-wheel-labels">B:</label>
+                        <input
+                            type="text"
+                            className="list-color-wheel-controls-channels">
+                        </input>
+                </div>
+            </div>
+        );
+    }
+}
+
 class TODOListEntry extends Component {
     constructor(){
         super();
@@ -333,6 +468,8 @@ class App extends Component {
                                 collapseFunc={(listKey) => this.collapseList(listKey)}
                                 deleteFunc={(listKey) => this.removeList(listKey)}
                             />
+                            <TODOColorPicker
+                                listKey={this.state.lists[key]['id']}/>
                             <table className={"list-entry-table " + (this.state.lists[key]['collapsed'] ? "collapsed" : "")} >
                                 <tbody>
                                     {this.renderListEntries(key)}

@@ -296,6 +296,41 @@ List Entry Section
     left: -2px;
 }
 
+/*--------------------
+Color Picker Specific
+--------------------*/
+.list-color-wheel-container{
+    float: left;
+    display: inline-block;
+    width: 210px;
+    height: 210px;
+}
+
+.list-color-picker-canvas {
+    padding: 5px;
+}
+
+.list-color-wheel-controls-container{
+    display: inline-block;
+    float: left;
+    padding: 5px;
+    width: 100% - 210px;
+}
+
+.list-color-wheel-labels{
+    font-family: "Droid Mono", monospace;
+}
+
+.list-color-wheel-controls-color{
+    margin-left: 5px;
+    width: 80px;
+}
+
+.list-color-wheel-controls-channels{
+    margin-left: 5px;
+    width: 80px;
+}
+
 /*---------------
 Media queries
 ---------------*/
