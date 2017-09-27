@@ -1,29 +1,12 @@
 .list-color-wheel-container{
-    float: left;
-    display: inline-block;
+    display: block;
     width: 210px;
     height: 210px;
-    margin: 0px;
+    margin: 5px auto;
 }
 
 .list-color-picker-canvas {
     padding: 5px;
-}
-
-.list-color-wheels-controls-container-upper{
-    display: inline-block;
-    float: left;
-    width: calc(100% - 210px);
-}
-
-.list-color-wheel-controls-table{
-    display: inline-block;
-    float: left;
-    padding: 5px;
-}
-
-.list-color-wheel-controls-container tr {
-    width: calc(100% - 210px);
 }
 
 .list-color-wheel-labels{
@@ -32,24 +15,15 @@
     width: 20%;
 }
 
-.list-color-wheel-controls-color{
-    width: 100%;
-}
-
-.list-color-wheel-controls-channels{
-    width: 100%;
-}
-
-.list-color-wheel-controls-container-sliders{
+.list-color-wheel-slider-container{
     width: 90%;
     height: 24px;
-    float: left;
-    margin: 5px 5%;
+    margin: 10px 5%;
     text-align: center;
     background: white;
 }
 
-.list-color-wheel-controls-sliders{
+.list-color-wheel-sliders{
     width: 90%;
     margin: 5px auto;
 }

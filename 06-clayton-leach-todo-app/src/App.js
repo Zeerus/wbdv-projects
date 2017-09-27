@@ -124,32 +124,34 @@ class TODOColorPicker extends Component {
         }
     }
 
+
+
     componentDidMount(){
+        //Obtain the canvas and context
         var canvas = document.getElementById("color-picker-canvas-" + this.props.listKey)
         canvas.width = "200";
         canvas.height = "200";
         var context = canvas.getContext('2d');
+        //Create blank 200x200 image and obtain handle for its data
         var colorWheel = context.createImageData(200, 200);
         var imageData = colorWheel.data;
         for(var i = 0.0; i < 100.0; i = i + 1.0){
             for(var j = 0.0; j < 360.0; j = j + 0.25){
-                //Find the image coordinates.
+                //Find the image coordinates from the polar coordinates of a circle
                 var x = Math.round(((i * Math.cos(j * Math.PI / 180.0))) + 100);
                 var y = Math.round(((i * Math.sin(j * Math.PI / 180.0))) + 100);
-
-
-                //  * (Math.PI / 180)
 
                 //Calculate the color
                 var pixelColor = hslToRGB(j * Math.PI / 180.0 / ( 2 * Math.PI), i / 99, 0.55);
 
+                //Store the color in the image.
                 imageData[((x + 200 * y) * 4)] = pixelColor[0]; //Red pixel
                 imageData[((x + 200 * y) * 4) + 1] = pixelColor[1]; //Green pixel
                 imageData[((x + 200 * y) * 4) + 2] = pixelColor[2]; //Blue pixel
                 imageData[((x + 200 * y) * 4) + 3] = 255; //Alpha
             }
         }
-
+        //Put the image into the context.
         context.putImageData(colorWheel, 0, 0);
     }
 
@@ -165,106 +167,69 @@ class TODOColorPicker extends Component {
                         height="200px"
                     </canvas>
                 </div>
-                <div className="list-color-wheels-controls-container-upper">
-                    <table
-                        className="list-color-wheel-controls-table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">Color:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-color">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">R:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">G:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">B:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">H:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">S:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label className="list-color-wheel-labels">L:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        className="list-color-wheel-controls-channels">
-                                    </input>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="list-color-wheel-controls-container-sliders">
+                <div className="list-color-wheel-slider-container">
                     <input
                         type="range"
                         min="0"
-                        max="100"
-                        step="0.1"
-                        className="list-color-wheel-controls-sliders">
+                        max="255"
+                        step="1"
+                        className="list-color-wheel-sliders">
                     </input>
                 </div>
-                <div className="list-color-wheel-controls-container-sliders">
+                <div className="list-color-wheel-slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="255"
+                        step="1"
+                        className="list-color-wheel-sliders">
+                    </input>
+                </div>
+                <div className="list-color-wheel-slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="255"
+                        step="1"
+                        className="list-color-wheel-sliders">
+                    </input>
+                </div>
+                <hr></hr>
+                <div className="list-color-wheel-slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        step="0.1"
+                        className="list-color-wheel-sliders">
+                    </input>
+                </div>
+                <div className="list-color-wheel-slider-container">
                     <input
                         type="range"
                         min="0"
                         max="100"
                         step="0.1"
-                        className="list-color-wheel-controls-sliders">
+                        className="list-color-wheel-sliders">
+                    </input>
+                </div>
+                <div className="list-color-wheel-slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        className="list-color-wheel-sliders">
+                    </input>
+                </div>
+                <hr></hr>
+                <div className="list-color-wheel-slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        className="list-color-wheel-sliders">
                     </input>
                 </div>
                 <div>
