@@ -88,3 +88,28 @@ header::after {
     color: $primary-color;
     background: white;
 }
+
+
+@media (min-width: 0px) and (max-width: 920px){
+    .header-logo-text{
+        display: none;
+    }
+
+    .header-left{
+        width: 10%;
+    }
+
+    .header-center{
+        width: 90%;
+    }
+
+    .header-button{
+        display: none;
+    }
+}
+
+@media (min-width: 921px) and (max-width: 1425px){
+    .header-center{
+        width: 66%;
+    }
+}

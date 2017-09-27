@@ -1,0 +1,79 @@
+.list-entry-table{
+    background: #E8D4BA;
+    width: 100%;
+    border: 1px solid #998C7A;
+    border-collapse: collapse;
+}
+
+.list-entry-table.collapsed > *{
+    display: none;
+}
+
+.list-entry-row td{
+    border-bottom: 1px solid #998C7A;
+}
+
+.list-entry-check-container{
+    width:24px;
+}
+
+.list-entry-button-check{
+    background: transparent;
+    border: 1px solid #5C5449;
+    border-radius: 15px;
+    width:20px;
+    height: 20px;
+    outline: none;
+
+    i{
+        color: #5C5449;
+        position: relative;
+        left: -4px;
+    }
+}
+
+.list-entry-button-nocheck{
+    display:none;
+}
+
+.list-entry-text-container{
+    width: calc(100% - 48px);
+    padding-left: 12px;
+}
+
+.list-entry-text{
+    font-family: $primary-font;
+    font-weight: 400;
+    color: #5C5449;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+    padding: 0;
+}
+
+.list-entry-text-checked{
+    text-decoration: line-through;
+}
+
+.list-entry-delete-button{
+    color: #5C5449;
+    width: 20px;
+    float: right;
+    background: transparent;
+    border: none;
+    border-radius: 30px;
+    text-align: center;
+    margin-left: 5px;
+    outline: none;
+
+    i{
+        position: relative;
+        left: -2px;
+    }
+}
+
+.list-entry-delete-button:active{
+    background: #B5A591;
+}

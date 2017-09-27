@@ -1,0 +1,53 @@
+.list-color-wheel-container{
+    float: left;
+    display: inline-block;
+    width: 210px;
+    height: 210px;
+    margin: 0px;
+}
+
+.list-color-picker-canvas {
+    padding: 5px;
+}
+
+.list-color-wheels-controls-container-upper{
+    display: inline-block;
+    float: left;
+    width: calc(100% - 220px);
+}
+
+.list-color-wheel-controls-table{
+    display: inline-block;
+    float: left;
+    padding: 5px;
+}
+
+.list-color-wheel-controls-container tr {
+    width: calc(100% - 210px);
+}
+
+.list-color-wheel-labels{
+    font-family: "Droid Mono", monospace;
+    width: 20%;
+}
+
+.list-color-wheel-controls-color{
+    margin-left: 5px;
+    width: 70%;
+}
+
+.list-color-wheel-controls-channels{
+    margin-left: 5px;
+    width: 70%;
+}
+
+.list-color-wheel-controls-container-sliders{
+    width: 100%;
+    margin:auto;
+    text-align: center;
+}
+
+.list-color-wheel-controls-sliders{
+    width: 90%;
+    margin: 5px auto;
+}
