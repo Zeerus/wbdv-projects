@@ -13,7 +13,7 @@
 .list-color-wheels-controls-container-upper{
     display: inline-block;
     float: left;
-    width: calc(100% - 220px);
+    width: calc(100% - 210px);
 }
 
 .list-color-wheel-controls-table{
@@ -28,26 +28,46 @@
 
 .list-color-wheel-labels{
     font-family: "Droid Mono", monospace;
+    color: white;
     width: 20%;
 }
 
 .list-color-wheel-controls-color{
-    margin-left: 5px;
-    width: 70%;
+    width: 100%;
 }
 
 .list-color-wheel-controls-channels{
-    margin-left: 5px;
-    width: 70%;
+    width: 100%;
 }
 
 .list-color-wheel-controls-container-sliders{
-    width: 100%;
-    margin:auto;
+    width: 90%;
+    height: 24px;
+    float: left;
+    margin: 5px 5%;
     text-align: center;
+    background: white;
 }
 
 .list-color-wheel-controls-sliders{
     width: 90%;
     margin: 5px auto;
+}
+
+.list-color-wheel-controls-submit {
+    font-family: $primary-font;
+    color: white;
+    display: inline-block;
+    margin: 5px 5%;
+    border: 1px solid white;
+    border-radius: 30px;
+    line-height: 40px;
+    background: transparent;
+    outline: none;
+    float: right;
+
+    &:hover{
+        color: $primary-color;
+        background: white;
+    }
 }

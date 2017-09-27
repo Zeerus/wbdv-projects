@@ -15,12 +15,12 @@ header {
     height: 100px;
     border-bottom: 1px solid #5E5C56;
     z-index:20;
-}
 
-header::after {
-    content: "";
-    display: table;
-    clear: both;
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 .header-container {
@@ -82,11 +82,11 @@ header::after {
     line-height: 40px;
     background: transparent;
     outline: none;
-}
 
-.header-button:hover{
-    color: $primary-color;
-    background: white;
+    &:hover{
+        color: $primary-color;
+        background: white;
+    }
 }
 
 

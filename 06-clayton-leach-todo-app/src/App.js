@@ -252,14 +252,26 @@ class TODOColorPicker extends Component {
                 <div className="list-color-wheel-controls-container-sliders">
                     <input
                         type="range"
+                        min="0"
+                        max="100"
+                        step="0.1"
                         className="list-color-wheel-controls-sliders">
                     </input>
                 </div>
                 <div className="list-color-wheel-controls-container-sliders">
                     <input
                         type="range"
+                        min="0"
+                        max="100"
+                        step="0.1"
                         className="list-color-wheel-controls-sliders">
                     </input>
+                </div>
+                <div>
+                    <button
+                        className="list-color-wheel-controls-submit">
+                        Add color
+                    </button>
                 </div>
             </div>
         );
@@ -538,13 +550,16 @@ class App extends Component {
                                 collapseFunc={(listKey) => this.collapseList(listKey)}
                                 deleteFunc={(listKey) => this.removeList(listKey)}
                             />
-                            <TODOColorPicker
-                                listKey={this.state.lists[key]['id']}/>
-                            <table className={"list-entry-table " + (this.state.lists[key]['collapsed'] ? "collapsed" : "")} >
-                                <tbody>
-                                    {this.renderListEntries(key)}
-                                </tbody>
-                            </table>
+                            <div
+                                className={(this.state.lists[key]['collapsed'] ? "collapsed" : "")}>
+                                    <TODOColorPicker
+                                        listKey={this.state.lists[key]['id']}/>
+                                    <table className="list-entry-table">
+                                        <tbody>
+                                            {this.renderListEntries(key)}
+                                        </tbody>
+                                    </table>
+                            </div>
                         </div>
                     )
                 });

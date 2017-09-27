@@ -90,6 +90,11 @@
   transition: opacity 300ms ease-in, width 300ms ease-in, height 300ms ease-in;
 }
 
+.collapsed > *{
+    display: none;
+}
+
+
 @media (min-width: 0px) and (max-width: 920px){
     .list-container{
         width: 100%;

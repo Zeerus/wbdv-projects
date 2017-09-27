@@ -16,6 +16,59 @@ body {
   .lists-area {
     width: 95%; } }
 
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+  background: transparent;
+  /* Otherwise white in Chrome */ }
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; }
+
+input[type=range]:focus {
+  outline: none;
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent; }
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -14px;
+  /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */ }
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 24px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer; }
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  border: 1px solid #000000;
+  height: 24px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer; }
+
 .header-spacer {
   height: 100px;
   width: 100%; }
@@ -32,11 +85,10 @@ header {
   height: 100px;
   border-bottom: 1px solid #5E5C56;
   z-index: 20; }
-
-header::after {
-  content: "";
-  display: table;
-  clear: both; }
+  header::after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .header-container {
   font-family: "Open Sans", sans-serif;
@@ -92,10 +144,9 @@ header::after {
   line-height: 40px;
   background: transparent;
   outline: none; }
-
-.header-button:hover {
-  color: #E88714;
-  background: white; }
+  .header-button:hover {
+    color: #E88714;
+    background: white; }
 
 @media (min-width: 0px) and (max-width: 920px) {
   .header-logo-text {
@@ -188,6 +239,9 @@ header::after {
   height: 1px;
   transition: opacity 300ms ease-in, width 300ms ease-in, height 300ms ease-in; }
 
+.collapsed > * {
+  display: none; }
+
 @media (min-width: 0px) and (max-width: 920px) {
   .list-container {
     width: 100%;
@@ -211,9 +265,6 @@ header::after {
   width: 100%;
   border: 1px solid #998C7A;
   border-collapse: collapse; }
-
-.list-entry-table.collapsed > * {
-  display: none; }
 
 .list-entry-row td {
   border-bottom: 1px solid #998C7A; }
@@ -284,7 +335,7 @@ header::after {
 .list-color-wheels-controls-container-upper {
   display: inline-block;
   float: left;
-  width: calc(100% - 220px); }
+  width: calc(100% - 210px); }
 
 .list-color-wheel-controls-table {
   display: inline-block;
@@ -296,21 +347,38 @@ header::after {
 
 .list-color-wheel-labels {
   font-family: "Droid Mono", monospace;
+  color: white;
   width: 20%; }
 
 .list-color-wheel-controls-color {
-  margin-left: 5px;
-  width: 70%; }
+  width: 100%; }
 
 .list-color-wheel-controls-channels {
-  margin-left: 5px;
-  width: 70%; }
+  width: 100%; }
 
 .list-color-wheel-controls-container-sliders {
-  width: 100%;
-  margin: auto;
-  text-align: center; }
+  width: 90%;
+  height: 24px;
+  float: left;
+  margin: 5px 5%;
+  text-align: center;
+  background: white; }
 
 .list-color-wheel-controls-sliders {
   width: 90%;
   margin: 5px auto; }
+
+.list-color-wheel-controls-submit {
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  display: inline-block;
+  margin: 5px 5%;
+  border: 1px solid white;
+  border-radius: 30px;
+  line-height: 40px;
+  background: transparent;
+  outline: none;
+  float: right; }
+  .list-color-wheel-controls-submit:hover {
+    color: #E88714;
+    background: white; }
