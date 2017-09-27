@@ -1,0 +1,90 @@
+.header-spacer{
+    height:100px;
+    width: 100%;
+}
+
+header {
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    font-family: $primary-font;
+    font-weight: 300;
+    width:100%;
+    background: $primary-color;
+    height: 100px;
+    border-bottom: 1px solid #5E5C56;
+    z-index:20;
+}
+
+header::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.header-container {
+    font-family: $primary-font;
+    font-weight: 300;
+    background: $primary-color;
+    width: 80%;
+    max-width: 1200px;
+    height: 100px;
+    line-height: 100px;
+    padding: 0px 20px;
+    margin: 0 auto;
+    vertical-align: top;
+}
+
+.header-left {
+    float: left;
+    width: 29%;
+}
+
+.header-logo{
+    color: white;
+    line-height: 100px;
+    float: left;
+}
+.header-logo-text{
+    font-family: "Space Mono", sans-serif;
+    color: white;
+    float: left;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.header-center{
+    float: left;
+    width: 45%;
+    text-align: right;
+}
+
+.header-text-field {
+    font-family: $primary-font;
+    display: inline-block;
+    color: #5E5C56;
+    min-width: 70%;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #5E5C56;
+    border-radius: 30px;
+    outline: none
+}
+
+.header-button {
+    font-family: $primary-font;
+    color: white;
+    display: inline-block;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 30px;
+    line-height: 40px;
+    background: transparent;
+    outline: none;
+}
+
+.header-button:hover{
+    color: $primary-color;
+    background: white;
+}

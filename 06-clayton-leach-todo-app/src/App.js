@@ -165,31 +165,101 @@ class TODOColorPicker extends Component {
                         height="200px"
                     </canvas>
                 </div>
-                <div
-                    className="list-color-wheel-controls-container">
-                        <label className="list-color-wheel-labels">Color:</label>
-                        <input
-                            type="text"
-                            className="list-color-wheel-controls-color">
-                        </input>
-                        <br></br>
-                        <label className="list-color-wheel-labels">R:</label>
-                        <input
-                            type="text"
-                            className="list-color-wheel-controls-channels">
-                        </input>
-                        <br></br>
-                        <label className="list-color-wheel-labels">G:</label>
-                        <input
-                            type="text"
-                            className="list-color-wheel-controls-channels">
-                        </input>
-                        <br></br>
-                        <label className="list-color-wheel-labels">B:</label>
-                        <input
-                            type="text"
-                            className="list-color-wheel-controls-channels">
-                        </input>
+                <div className="list-color-wheels-controls-container-upper">
+                    <table
+                        className="list-color-wheel-controls-table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">Color:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-color">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">R:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">G:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">B:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">H:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">S:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label className="list-color-wheel-labels">L:</label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        className="list-color-wheel-controls-channels">
+                                    </input>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="list-color-wheel-controls-container-sliders">
+                    <input
+                        type="range"
+                        className="list-color-wheel-controls-sliders">
+                    </input>
+                </div>
+                <div className="list-color-wheel-controls-container-sliders">
+                    <input
+                        type="range"
+                        className="list-color-wheel-controls-sliders">
+                    </input>
                 </div>
             </div>
         );
