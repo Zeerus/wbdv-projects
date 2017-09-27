@@ -322,6 +322,10 @@ header {
 .list-entry-delete-button:active {
   background: #B5A591; }
 
+.list-color-picker-container hr {
+  width: 95%;
+  border: 1px solid #606060; }
+
 .list-color-wheel-container {
   display: block;
   width: 210px;
@@ -361,3 +365,18 @@ header {
   .list-color-wheel-controls-submit:hover {
     color: #E88714;
     background: white; }
+
+.list-color-wheel-labels-container {
+  display: inline-block;
+  float: left;
+  margin-left: 5%; }
+  .list-color-wheel-labels-container label {
+    font-family: "Droid Mono", monospace;
+    color: white; }
+
+.list-color-wheel-swatch {
+  display: inline-block;
+  height: 1em;
+  margin: 5px 0;
+  border: 1px solid black;
+  width: 100%; }

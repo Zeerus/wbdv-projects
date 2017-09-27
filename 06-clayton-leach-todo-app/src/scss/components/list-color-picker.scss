@@ -1,3 +1,10 @@
+.list-color-picker-container{
+    hr{
+        width: 95%;
+        border: 1px solid #606060;
+    }
+}
+
 .list-color-wheel-container{
     display: block;
     width: 210px;
@@ -44,4 +51,22 @@
         color: $primary-color;
         background: white;
     }
+}
+
+.list-color-wheel-labels-container{
+    display: inline-block;
+    float: left;
+    margin-left: 5%;
+    label{
+        font-family: "Droid Mono", monospace;
+        color: white;
+    }
+}
+
+.list-color-wheel-swatch{
+    display: inline-block;
+    height: 1em;
+    margin: 5px 0;
+    border: 1px solid black;
+    width: 100%;
 }
