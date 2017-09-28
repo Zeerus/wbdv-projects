@@ -349,7 +349,8 @@ header {
 
 .list-color-wheel-sliders {
   width: 90%;
-  margin: 5px auto; }
+  margin: 0;
+  height: 24px; }
 
 .list-color-wheel-controls-submit {
   font-family: "Open Sans", sans-serif;

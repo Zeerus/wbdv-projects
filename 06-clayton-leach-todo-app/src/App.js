@@ -196,7 +196,8 @@ class TODOColorPicker extends Component {
                     prevState['currentColor'][channel] = activeSlider.value * 1.0;
                     return prevState;
                 });
-            case 'default':
+            break;
+            default:
             break;
         }
 
@@ -254,7 +255,6 @@ class TODOColorPicker extends Component {
 
         canvas.onmousemove = function(evt){
             if(this.state.mouseDown){
-                var canvas = document.getElementById("color-picker-canvas-" + this.props.listKey)
                 var mouseX;
                 var mouseY;
                 if(evt.offsetX) {
@@ -266,7 +266,6 @@ class TODOColorPicker extends Component {
                 }
 
                 var color = context.getImageData(mouseX, mouseY, 1, 1).data;
-                console.log(color);
 
                 if(color[3] !== 0){
                     this.setState((prevState, props) => {
